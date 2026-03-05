@@ -19,110 +19,204 @@ document.getElementById("btnFonteMenos").addEventListener("click", () => {
 
 aplicarFonte();
 
-// ====== Contraste (tema claro/escuro do Bootstrap) ======
-const btnContraste = document.getElementById("btnContraste");
+/** CÓDIGO DA UNIDADE DA CAMES
+ *
+ * document.addEventListener('DOMContentLoaded', function(){
+    const aumentaFonteBotao = document.getElementById('aumentar-fonte');
+    const diminuiFonteBotao = document.getElementById('diminuir-fonte');
 
-btnContraste.addEventListener("click", () => {
-  const html = document.documentElement;
-  const temaAtual = html.getAttribute("data-bs-theme");
+    let tamanhoAtualFonte = 1;
+    aumentaFonteBotao.addEventListener('click', function(){
+        tamanhoAtualFonte += 0.1;
+        document.body.style.fontSize = `${tamanhoAtualFonte}rem`;
+
+    });
+
+    diminuiFonteBotao.addEventListener('click', function(){
+        tamanhoAtualFonte -= 0.1;
+        document.body.style.fontSize = `${tamanhoAtualFonte}rem`;
+
+    });
+
+});
+ */
+
+// ====== Contraste (tema claro/escuro do Bootstrap) ======
+
+const btnContraste = document.getElementById("btnContraste");
+btnContraste.addEventListener("click", mudaTema);
+
+function mudaTema() {
+  const paginaHTML = document.documentElement;
+  const temaAtual = paginaHTML.getAttribute("data-bs-theme");
 
   if (temaAtual === "light") {
-    html.setAttribute("data-bs-theme", "dark");
+    paginaHTML.setAttribute("data-bs-theme", "dark");
     btnContraste.setAttribute("aria-pressed", "true");
   } else {
-    html.setAttribute("data-bs-theme", "light");
+    paginaHTML.setAttribute("data-bs-theme", "light");
     btnContraste.setAttribute("aria-pressed", "false");
   }
-});
+}
 
-// ====== Leitura em voz alta (simples) ======
+// ====== Leitura em voz alta ======
+
+// variável que guarda se o sistema está lendo
 let lendo = false;
 
-document.getElementById("btnLer").addEventListener("click", () => {
-  if (!("speechSynthesis" in window)) return;
+// pegar o botão
+let botaoLer = document.getElementById("btnLer");
 
-  if (lendo) {
-    if (speechSynthesis.paused) speechSynthesis.resume();
-    else speechSynthesis.pause();
+// quando clicar no botão
+botaoLer.addEventListener("click", iniciarLeitura);
+
+function iniciarLeitura() {
+  // verifica se o navegador suporta leitura
+  if (!("speechSynthesis" in window)) {
     return;
   }
 
-  const texto = document.querySelector("main").innerText;
-  const fala = new SpeechSynthesisUtterance(texto);
+  // se já estiver lendo
+  if (lendo == true) {
+    // se estiver pausado → continuar
+    if (speechSynthesis.paused == true) {
+      speechSynthesis.resume();
+    }
+
+    // senão → pausar
+    else {
+      speechSynthesis.pause();
+    }
+
+    return;
+  }
+
+  // pegar o texto da página
+  let conteudo = document.querySelector("main");
+  let texto = conteudo.innerText;
+
+  // criar objeto de fala
+  let fala = new SpeechSynthesisUtterance(texto);
+
+  // definir idioma
   fala.lang = "pt-BR";
 
-  fala.onend = () => {
-    lendo = false;
-  };
+  // quando terminar de ler
+  fala.onend = finalizarLeitura;
 
+  // marcar que começou a leitura
   lendo = true;
+
+  // cancelar falas antigas
   speechSynthesis.cancel();
+
+  // iniciar leitura
   speechSynthesis.speak(fala);
-});
+}
 
-// ====== Navegação (rolagem suave) ======
-document.querySelectorAll("[data-go]").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const alvo = document.querySelector(btn.getAttribute("data-go"));
-    if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-});
+// função chamada quando a leitura termina
+function finalizarLeitura() {
+  lendo = false;
+}
 
-// ====== Checklist de golpes ======
-const btnResultado = document.getElementById("btnResultadoGolpe");
-const btnLimpar = document.getElementById("btnLimparGolpe");
-const resultado = document.getElementById("resultadoGolpe");
+// ===== Checklist de golpes =====
 
-btnResultado.addEventListener("click", () => {
-  const ids = ["c1", "c2", "c3", "c4", "c5"];
-  let marcados = 0;
+// pegar elementos da página
+var btnResultado = document.getElementById("btnResultadoGolpe");
+var btnLimpar = document.getElementById("btnLimparGolpe");
+var resultado = document.getElementById("resultadoGolpe");
 
-  ids.forEach((id) => {
-    if (document.getElementById(id).checked) marcados++;
-  });
+// quando clicar no botão "Ver resultado"
+btnResultado.addEventListener("click", verificarGolpe);
 
-  resultado.classList.remove("d-none", "alert-danger", "alert-success", "alert-warning");
+// função que verifica os critérios
+function verificarGolpe() {
+  // lista com os ids dos checkboxes
+  var ids = ["c1", "c2", "c3", "c4", "c5"];
 
+  // contador de itens marcados
+  var marcados = 0;
+
+  // percorrer a lista
+  for (var i = 0; i < ids.length; i++) {
+    var caixa = document.getElementById(ids[i]);
+
+    if (caixa.checked == true) {
+      marcados = marcados + 1;
+    }
+  }
+
+  // mostrar área de resultado
+  resultado.classList.remove("d-none");
+  resultado.classList.remove("alert-danger");
+  resultado.classList.remove("alert-success");
+  resultado.classList.remove("alert-warning");
+
+  // lógica do resultado
   if (marcados >= 3) {
     resultado.classList.add("alert-danger");
+
     resultado.innerHTML =
-      "🚨 <strong>Alta chance de golpe.</strong> Não envie dados e não pague. Confirme com alguém de confiança.";
-  } else if (marcados === 2) {
+      "🚨 <strong>Alta chance de golpe.</strong> Não envie dados e não pague.";
+  } else if (marcados == 2) {
     resultado.classList.add("alert-warning");
+
     resultado.innerHTML =
-      "⚠️ <strong>Cuidado.</strong> Pode ser golpe. Confirme por outro canal antes de agir.";
+      "⚠️ <strong>Cuidado.</strong> Pode ser golpe. Confirme antes de agir.";
   } else {
     resultado.classList.add("alert-success");
+
     resultado.innerHTML =
-      "✅ <strong>Baixa chance pelo checklist.</strong> Mesmo assim, confirme links e números.";
+      "✅ <strong>Baixa chance.</strong> Mesmo assim confirme links e números.";
   }
-});
+}
 
-btnLimpar.addEventListener("click", () => {
-  ["c1", "c2", "c3", "c4", "c5"].forEach((id) => {
-    document.getElementById(id).checked = false;
-  });
+// ===== Modo simples =====
 
-  resultado.classList.add("d-none");
-  resultado.textContent = "";
-});
-
-// ====== Modo simples (esconde seções não essenciais) ======
-const btnSimples = document.getElementById("btnSimples");
+let btnSimples = document.getElementById("btnSimples");
+// variável que guarda o estado do modo simples
 let modoSimplesAtivo = false;
 
-btnSimples.addEventListener("click", () => {
-  modoSimplesAtivo = !modoSimplesAtivo;
+// quando clicar no botão
+btnSimples.addEventListener("click", alternarModoSimples);
 
-  btnSimples.setAttribute("aria-pressed", modoSimplesAtivo ? "true" : "false");
-
-  document.querySelectorAll(".nao-essencial").forEach((sec) => {
-    if (modoSimplesAtivo) sec.classList.add("d-none");
-    else sec.classList.remove("d-none");
-  });
-
-  if (modoSimplesAtivo) {
-    const inicio = document.querySelector("#inicio");
-    if (inicio) inicio.scrollIntoView({ behavior: "smooth", block: "start" });
+// função que ativa ou desativa o modo simples
+function alternarModoSimples() {
+  // inverter estado do modo simples
+  if (modoSimplesAtivo == false) {
+    modoSimplesAtivo = true;
+  } else {
+    modoSimplesAtivo = false;
   }
-});
+
+  // atualizar atributo de acessibilidade
+  if (modoSimplesAtivo == true) {
+    btnSimples.setAttribute("aria-pressed", "true");
+  } else {
+    btnSimples.setAttribute("aria-pressed", "false");
+  }
+
+  // pegar todas as seções não essenciais
+  let secoes = document.querySelectorAll(".nao-essencial");
+
+  // percorrer as seções
+  for (let i = 0; i < secoes.length; i++) {
+    if (modoSimplesAtivo == true) {
+      secoes[i].classList.add("d-none");
+    } else {
+      secoes[i].classList.remove("d-none");
+    }
+  }
+
+  // se o modo simples estiver ativo
+  if (modoSimplesAtivo == true) {
+    let inicio = document.querySelector("#inicio");
+
+    if (inicio != null) {
+      inicio.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+}
