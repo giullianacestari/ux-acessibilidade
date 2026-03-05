@@ -1,0 +1,472 @@
+<!-- index.html (completo e ajustado) -->
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Cidadania Digital Ativa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap (CSS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Tema violeta/roxo (mínimo, só para definir a cor primária do Bootstrap) -->
+  <style>
+    :root {
+      --bs-primary: #6f42c1;
+      --bs-primary-rgb: 111, 66, 193;
+    }
+  </style>
+</head>
+
+<body class="bg-body">
+
+  <!-- NAVBAR (alto contraste e diferente da seção abaixo) -->
+  <nav class="navbar navbar-expand-lg bg-dark border-bottom border-3 border-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <span class="navbar-brand fw-semibold">Cidadania Digital Ativa</span>
+
+      <div class="ms-auto d-flex gap-2">
+        <button id="btnFonteMenos" class="btn btn-outline-light btn-lg" type="button" aria-label="Diminuir fonte">
+          A-
+        </button>
+
+        <button id="btnFonteMais" class="btn btn-outline-light btn-lg" type="button" aria-label="Aumentar fonte">
+          A+
+        </button>
+
+        <button id="btnContraste" class="btn btn-outline-light btn-lg" type="button" aria-pressed="false"
+          aria-label="Alternar contraste (claro/escuro)">
+          ☀️/🌙
+        </button>
+
+        <button id="btnLer" class="btn btn-outline-light btn-lg" type="button" aria-label="Ler em voz alta">
+          🔊
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- INÍCIO (essencial) -->
+  <header id="inicio" class="py-4 py-md-5 bg-primary text-white">
+    <div class="container">
+      <div class="row g-3 align-items-center">
+        <div class="col-12 col-lg-8">
+          <h1 class="display-6 fw-semibold mb-2">Internet com mais segurança</h1>
+          <p class="fs-5 mb-0">
+            Respostas rápidas para golpes e direitos na internet.
+          </p>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <div class="d-grid gap-2">
+            <button class="btn btn-light btn-lg fw-semibold" data-bs-toggle="modal" data-bs-target="#modalAjuda">
+              🚨 Preciso de ajuda agora
+            </button>
+            <small class="text-white-50">
+              Atalho para orientações e contato fictício.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MODAL AJUDA (com link fictício) -->
+  <div class="modal fade" id="modalAjuda" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border border-2">
+        <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+          <h2 class="h4 mb-0">🚨 Ajuda rápida</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+
+        <div class="modal-body fs-5">
+          <p class="mb-3">Se pedirem dinheiro, senha ou código:</p>
+
+          <ul class="mb-3">
+            <li>Não informe dados;</li>
+            <li>Não faça pagamentos;</li>
+            <li>Peça ajuda a alguém de confiança.</li>
+          </ul>
+
+          <div class="alert alert-warning mb-3">
+            Contato fictício: <strong>Disque Idoso 0800 123 456</strong>
+          </div>
+
+          <div class="d-grid gap-2">
+            <a class="btn btn-primary btn-lg" href="tel:0800123456">
+              📞 Ligar para o Disque Idoso
+            </a>
+            <button class="btn btn-outline-primary btn-lg" data-bs-dismiss="modal">Fechar</button>
+          </div>
+
+          <small class="text-body-secondary d-block mt-3">
+            Número fictício, usado apenas para fins educativos.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    AJUSTE IMPORTANTE:
+    A tabbar é fixed-bottom, então reservamos espaço no final do main
+    para o footer não ficar “atrás” da tabbar.
+  -->
+  <main class="pb-5" style="padding-bottom: 120px;">
+
+    <!-- DICAS (essencial) -->
+    <section class="py-4 py-md-5">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <h2 class="h3 mb-0">Dicas importantes</h2>
+          <span class="badge text-bg-primary fs-6">Essencial</span>
+        </div>
+
+        <div class="row mt-3 g-3">
+          <div class="col-12 col-md-4">
+            <div class="card border border-2">
+              <div class="card-body p-4">
+                <h3 class="h4 mb-2">🔒 Senhas</h3>
+                <p class="fs-5 mb-0">Não compartilhe senha, código do SMS ou token.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="card border border-2">
+              <div class="card-body p-4">
+                <h3 class="h4 mb-2">📱 Mensagens</h3>
+                <p class="fs-5 mb-0">Desconfie de urgência: “agora”, “última chance”.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="card border border-2">
+              <div class="card-body p-4">
+                <h3 class="h4 mb-2">🌐 Links</h3>
+                <p class="fs-5 mb-0">Evite clicar em links de desconhecidos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-primary fs-5 mt-4 mb-0">
+          Regra de ouro: <strong>pare, respire e confirme</strong> antes de agir.
+        </div>
+      </div>
+    </section>
+
+    <!-- DIREITOS DIGITAIS -->
+    <section id="direitos" class="py-4 py-md-5 bg-body-tertiary">
+      <div class="container">
+
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <h2 class="h3 mb-0">
+            📜 Direitos na internet
+          </h2>
+
+          <span class="badge text-bg-primary fs-6">
+            Essencial
+          </span>
+        </div>
+
+        <p class="fs-5 mt-3">
+          Ao usar sites e aplicativos, você tem alguns direitos importantes.
+          Veja os principais:
+        </p>
+
+        <ul class="fs-5 mt-3">
+
+          <li>
+            <strong>Privacidade:</strong>
+            seus dados não devem ser usados sem necessidade.
+          </li>
+
+          <li>
+            <strong>Informação clara:</strong>
+            os aplicativos devem explicar por que pedem seus dados.
+          </li>
+
+          <li>
+            <strong>Consentimento:</strong>
+            você decide quando autoriza o uso das suas informações.
+          </li>
+
+          <li>
+            <strong>Segurança:</strong>
+            empresas devem proteger seus dados contra vazamentos.
+          </li>
+
+          <li>
+            <strong>Controle:</strong>
+            em muitos casos você pode pedir correção ou exclusão de dados.
+          </li>
+
+        </ul>
+
+        <div class="alert alert-primary fs-5 mt-4 mb-0">
+          💡 Dica: nenhum banco ou aplicativo pede <strong>senha ou código</strong>
+          por mensagem ou telefone.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GOLPES (essencial) -->
+    <section id="golpes" class="py-4 py-md-5">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <h2 class="h3 mb-0">🛡️ Como saber se estou caindo em um golpe?</h2>
+          <span class="badge text-bg-primary fs-6">Essencial</span>
+        </div>
+
+        <p class="fs-5 mt-3 mb-3">
+          Marque o que aconteceu e toque em <strong>Ver resultado</strong>.
+        </p>
+
+        <div class="card border border-2">
+          <div class="card-body p-4">
+
+            <div class="form-check fs-5">
+              <input class="form-check-input" type="checkbox" id="c1">
+              <label class="form-check-label" for="c1">Pedem senha, código do SMS ou dados pessoais.</label>
+            </div>
+
+            <div class="form-check fs-5 mt-2">
+              <input class="form-check-input" type="checkbox" id="c2">
+              <label class="form-check-label" for="c2">Falam que é “urgente” para você agir rápido.</label>
+            </div>
+
+            <div class="form-check fs-5 mt-2">
+              <input class="form-check-input" type="checkbox" id="c3">
+              <label class="form-check-label" for="c3">Pedem Pix, boleto estranho ou link para pagar.</label>
+            </div>
+
+            <div class="form-check fs-5 mt-2">
+              <input class="form-check-input" type="checkbox" id="c4">
+              <label class="form-check-label" for="c4">O número/link parece diferente do oficial.</label>
+            </div>
+
+            <div class="form-check fs-5 mt-2">
+              <input class="form-check-input" type="checkbox" id="c5">
+              <label class="form-check-label" for="c5">Promessa “boa demais” (prêmio, desconto enorme).</label>
+            </div>
+
+            <div class="d-grid d-sm-flex gap-2 mt-4">
+              <button id="btnResultadoGolpe" class="btn btn-primary btn-lg">
+                Ver resultado
+              </button>
+              <button id="btnLimparGolpe" class="btn btn-outline-primary btn-lg">
+                Limpar
+              </button>
+            </div>
+
+            <div id="resultadoGolpe" class="alert mt-4 mb-0 d-none fs-5" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="alert alert-primary fs-5 mt-4 mb-0">
+          Se der <strong>alta chance de golpe</strong>: não pague, não envie dados e peça ajuda.
+        </div>
+      </div>
+    </section>
+
+    <!-- BEM-ESTAR (não essencial; some no modo simples) -->
+    <section id="bem-estar" class="py-4 py-md-5 bg-body-tertiary nao-essencial">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <h2 class="h3 mb-0">🧘 Bem-estar</h2>
+          <span class="badge text-bg-primary fs-6">Opcional</span>
+        </div>
+
+        <p class="fs-5 mt-3 mb-3">Toque em uma atividade.</p>
+
+        <div class="alert alert-warning fs-5">
+          ⚠️ Educativo. Não substitui orientação médica.
+        </div>
+
+        <!-- 2 por fileira usando FLEX (sem grid) -->
+        <div class="d-flex flex-wrap gap-3">
+
+          <button class="flex-fill border border-2 rounded p-4 text-center bg-body" style="min-width:45%" type="button"
+            data-bs-toggle="modal" data-bs-target="#modalAlongamento" aria-label="Abrir atividade Alongamento">
+
+            <div class="fs-1">🤸</div>
+            <div class="fs-5 fw-semibold mt-2">Alongamento</div>
+
+          </button>
+
+          <button class="flex-fill border border-2 rounded p-4 text-center bg-body" style="min-width:45%" type="button"
+            data-bs-toggle="modal" data-bs-target="#modalRespiracao" aria-label="Abrir atividade Respiração">
+
+            <div class="fs-1">🌬️</div>
+            <div class="fs-5 fw-semibold mt-2">Respiração</div>
+
+          </button>
+
+          <button class="flex-fill border border-2 rounded p-4 text-center bg-body" style="min-width:45%" type="button"
+            data-bs-toggle="modal" data-bs-target="#modalHidratacao" aria-label="Abrir atividade Hidratação">
+
+            <div class="fs-1">💧</div>
+            <div class="fs-5 fw-semibold mt-2">Hidratação</div>
+
+          </button>
+
+          <button class="flex-fill border border-2 rounded p-4 text-center bg-body" style="min-width:45%" type="button"
+            data-bs-toggle="modal" data-bs-target="#modalRotina" aria-label="Abrir atividade Rotina">
+
+            <div class="fs-1">🗓️</div>
+            <div class="fs-5 fw-semibold mt-2">Rotina</div>
+
+          </button>
+
+        </div>
+      </div>
+
+      <!-- MODAIS BEM-ESTAR -->
+      <div class="modal fade" id="modalAlongamento" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content border border-2">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+              <h2 class="h4 mb-0">🤸 Alongamento (1 min)</h2>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body fs-5">
+              <ol class="mb-3">
+                <li>Postura confortável;</li>
+                <li>Ombros para trás e solta;</li>
+                <li>Braços pra cima (sem forçar);</li>
+                <li>Respire normal.</li>
+              </ol>
+              <div class="alert alert-warning mb-0">Pare se sentir dor.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalRespiracao" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content border border-2">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+              <h2 class="h4 mb-0">🌬️ Respiração (30 s)</h2>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body fs-5">
+              <ol class="mb-0">
+                <li>Inspire 1…2…3;</li>
+                <li>Segure 1 segundo;</li>
+                <li>Solte 1…2…3…4;</li>
+                <li>Repita devagar.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalHidratacao" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content border border-2">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+              <h2 class="h4 mb-0">💧 Hidratação</h2>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body fs-5">
+              <ul class="mb-0">
+                <li>Deixe água por perto;</li>
+                <li>Pequenos goles;</li>
+                <li>Ao acordar, beba um pouco.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalRotina" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content border border-2">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+              <h2 class="h4 mb-0">🗓️ Rotina (4 passos)</h2>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body fs-5">
+              <ol class="mb-0">
+                <li>Horário parecido pra acordar;</li>
+                <li>Pausa curta a cada 1 hora;</li>
+                <li>Caminhe alguns minutos;</li>
+                <li>Menos tela antes de dormir.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white border-top border-3 border-primary">
+      <div class="container py-4">
+        <div class="row g-2 align-items-center">
+          <div class="col-12 col-md-8">
+            <p class="mb-1 fw-semibold">Cidadania Digital Ativa</p>
+            <p class="mb-0 text-white-50">
+              Projeto educativo. Não coleta dados pessoais. Número de ajuda é fictício.
+            </p>
+          </div>
+          <div class="col-12 col-md-4 text-md-end">
+            <span class="badge text-bg-primary fs-6">v1.0.0</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- TABBAR FIXA (inclui INÍCIO + MODO SIMPLES essencial) -->
+  <!-- ! Dúvida: O certo aqui é usar nav mesmo?-->
+
+  <nav class="fixed-bottom bg-body border-top">
+    <div class="container">
+      <div class="d-flex justify-content-between py-2 gap-2">
+
+        <button class="btn btn-outline-primary flex-fill" type="button" data-go="#inicio" aria-label="Ir para Início">
+          🏠 <span class="d-none d-sm-inline">Início</span>
+        </button>
+
+        <button class="btn btn-outline-primary flex-fill" type="button" data-go="#direitos"
+          aria-label="Ir para Direitos">
+          📜 <span class="d-none d-sm-inline">Direitos</span>
+        </button>
+
+        <button class="btn btn-outline-primary flex-fill" type="button" data-go="#golpes" aria-label="Ir para Golpes">
+          🛡️ <span class="d-none d-sm-inline">Golpes</span>
+        </button>
+
+        <button class="btn btn-outline-primary flex-fill" type="button" data-go="#bem-estar"
+          aria-label="Ir para Bem-estar">
+          🧘 <span class="d-none d-sm-inline">Bem-estar</span>
+        </button>
+
+        <button id="btnSimples" class="btn btn-primary flex-fill" type="button" aria-pressed="false"
+          aria-label="Ativar ou desativar Modo simples">
+          ✨ <span class="d-none d-sm-inline">Modo simples</span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- app.js -->
+  <script src="app.js"></script>
+</body>
+
+</html>
